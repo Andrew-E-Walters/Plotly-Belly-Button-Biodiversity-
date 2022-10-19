@@ -69,7 +69,7 @@ function buildCharts(sample) {
     var otu_labels=result.otu_labels
     var sample_values=result.sample_values
 
-
+    // Create variables that hold the bubblechartLabels, and bubblechartValues.
     var bubblechartLabels = result.otu_labels;
     var bubblechartValues = result.sample_values
 
@@ -126,24 +126,17 @@ var bubbleLayout = {
 
 // 3. Use Plotly to plot the data with the layout.
 Plotly.newPlot('bubble',bubbleData, bubbleLayout ); 
-
-
  // Create a variable that holds the samples array. 
-
     // Create a variable that filters the samples for the object with the desired sample number.
-
     // 1. Create a variable that filters the metadata array for the object with the desired sample number.
     var metadata = data.metadata;
     var gaugeArray = metadata.filter(metaObj => metaObj.id == sample);  
+    
     // Create a variable that holds the first sample in the array.
-  
-
     // 2. Create a variable that holds the first sample in the metadata array.
     var gaugeResult = gaugeArray[0];
 
     // Create variables that hold the otu_ids, otu_labels, and sample_values.
-
-
     // 3. Create a variable that holds the washing frequency.
     var wfreqs = gaugeResult.wfreq;
     console.log(wfreqs)
@@ -156,10 +149,15 @@ var gaugeData = [
     type: "indicator",
     mode: "gauge+number",
     gauge: {
-      axis: { range: [null, 10] },
-      bar: {color: "black"},
+      axis: { 
+      range: [0, 10],
+      tickmode : 'array',
+      tickvals: [0,2,4,6,8,10],
+      ticktext: [0,2,4,6,8,10],
+      },
+      bar: {color: "grey"},
       steps: [
-        { range: [0, 2], color: "#1616A7" },
+        { range: [0, 2], color: "#1616A7"},
         { range: [2, 4], color: "#3366CC" },
         { range: [4, 6], color: "#17BCEF" },
         { range: [6, 8], color: "#19D3F3" },
